@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSaathi Hub: Student & Creative Services in Dibrugarh</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="SmartSaathi Hub is your one-stop digital assistant in Dibrugarh, Assam, offering affordable student services like project reports and printing, alongside premium creative design from SmartSaathi Inkmint.">
+    <meta name="keywords" content="SmartSaathi, Dibrugarh, Assam, student services, project report, printing services, resume design, creative design, digital marketing, SmartSaathi Inkmint, SmartSaathi Students">
+
+    <!-- Theme Color for browsers -->
+    <meta name="theme-color" content="#4A90E2"/>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-360633556"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-360633556');
+    </script>
+    
+    <style>
+        /* --- Core Styles & Customizations --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-color: #0c0a1f; /* Fallback */
+        }
+
+        /* --- Animated Gradient Background --- */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            20% { background-position: 100% 50%; }
+            40% { background-position: 100% 0%; }
+            60% { background-position: 0% 50%; }
+            80% { background-position: 50% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient {
+            background: linear-gradient(-45deg, #ffde59, #ff5c5c, #ffffff, #5cff7d, #ff5ce1);
+            background-size: 400% 400%;
+            animation: gradient-animation 25s ease infinite;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* Behind canvas */
+        }
+
+        /* --- Animated Orb Canvas --- */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* On top of gradient, behind content */
+        }
+
+        /* --- Text Emboss/Lift Effect --- */
+        .text-emboss {
+            text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2), 0px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-text-effect {
+            color: #fff;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5), 0px 4px 10px rgba(0,0,0,0.4);
+        }
+
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            background-color: rgba(10, 10, 20, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            scrollbar-width: thin;
+            scrollbar-color: #FFA500 rgba(0,0,0,0.2);
+        }
+        
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background-color: #FFA500;
+            border-radius: 10px;
+            border: 2px solid rgba(0,0,0,0.2);
+        }
+
+        /* --- Floating Launcher & Cart Button Styles --- */
+        .floating-launcher {
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 0.5rem; /* Base padding for mobile */
+            gap: 0.5rem;
+            border-radius: 1rem;
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+             .floating-launcher {
+                padding: 1.5rem 0.75rem; /* Larger padding for desktop */
+                gap: 0.75rem;
+                border-radius: 1.5rem;
+             }
+        }
+        .floating-launcher:hover {
+            transform: scale(1.1) translateX(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .launcher-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        .soon-tag {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f1f1f1;
+            color: #333;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 0.1rem 0.5rem;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+        
+        .floating-btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* --- Social Icon Styles --- */
+        .social-icon {
+            transition: transform 0.2s ease-in-out;
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+
+        /* --- Service Card Styles --- */
+        .service-card {
+            background: rgba(0, 0, 0, 0.25);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.7);
+        }
+        .service-card.selected {
+            transform: translateY(-2px) scale(0.98);
+            border: 2px solid #FFA500;
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+            background: rgba(255, 165, 0, 0.2);
+        }
+        
+        /* --- Input Field Styles --- */
+        .form-input {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+        .form-input:focus {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-color: #FFA500;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+        }
+        
+        /* --- Gemini Chat & Suggestions Styles --- */
+        .chat-bubble-user {
+            background-color: #3b82f6; /* Blue 500 */
+        }
+        .chat-bubble-gemini {
+            background-color: #4b5563; /* Gray 600 */
+        }
+        .typing-indicator span {
+            animation: blink 1.4s infinite both;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            20% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+        .gemini-suggestion-box {
+            background: rgba(0,0,0,0.3);
+            border-left: 4px solid #FFA500;
+            white-space: pre-wrap;
+        }
+
+
+        /* --- New Section Card Style --- */
+        .info-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        /* --- Pulsating Animation --- */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0);
+            }
+        }
+        .pulsate {
+            animation: pulse 2.5s infinite;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Animated Background -->
+    <div class="animated-gradient"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-black/20 backdrop-blur-sm border-b border-white/10">
+        <div class="container mx-auto px-4 py-3">
+            <a href="#" class="inline-flex items-center gap-3">
+                <img src="https://github.com/smartsaathi-dbr/smartsaathihub/blob/main/SMARTSAATHI_HUB_logo.jpeg?raw=true" alt="SmartSaathi Hub Logo" class="h-12 w-auto rounded-md shadow-lg">
+                <span class="hidden sm:block text-xl font-bold text-white text-emboss">SmartSaathi - Student & Digital Services</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 min-h-screen flex flex-col items-center justify-center p-4 pt-32 pb-24">
+        <!-- Hero Section -->
+        <section class="text-center w-full max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold hero-text-effect leading-tight">
+                Your Partner in Academic<br>& Creative Success.
+            </h1>
+            <p class="mt-6 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto text-emboss">
+                Welcome to SmartSaathi Hub! We empower students, creators, and businesses with comprehensive digital solutions.
+            </p>
+        </section>
+
+        <!-- About and QR Code Section -->
+        <section class="w-full max-w-5xl mx-auto mt-16 grid grid-cols-1 md:grid-cols-5 gap-8">
+            <!-- About Us Card -->
+            <div class="md:col-span-3 info-card rounded-2xl p-8 shadow-2xl">
+                <h2 class="text-3xl font-bold text-orange-400 mb-4 text-emboss">About Us</h2>
+                <p class="text-gray-200 leading-relaxed text-justify">
+                    SmartSaathi is your trusted digital assistant, designed to be a one-stop solution for a diverse range of needs. Whether you're a student requiring academic support, a creator looking for design services, or a business in need of professional documentation, our hub is built to assist you.
+                </p>
+                <p class="text-gray-200 leading-relaxed mt-4 text-justify">
+                    Our mission is to provide reliable, professional, and affordable services through a seamless, user-friendly platform. Explore our specialized verticals to see how we can help you succeed.
+                </p>
+            </div>
+
+            <!-- QR Code Card -->
+            <div class="md:col-span-2 info-card rounded-2xl p-8 shadow-2xl flex flex-col items-center justify-center text-center">
+                 <h3 class="text-2xl font-bold text-orange-400 mb-4 text-emboss">Connect Instantly</h3>
+                 <img src="https://github.com/smartsaathi-dbr/smartsaathihub/blob/main/WP_QR.jpg?raw=true" alt="WhatsApp QR Code" class="w-40 h-40 rounded-lg border-4 border-white shadow-lg">
+                 <p class="mt-4 text-gray-300">Scan to connect with us directly on WhatsApp for any queries or support.</p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Floating Launchers -->
+    <div class="fixed right-2 md:right-4 top-1/4 z-40 flex flex-col items-end space-y-2 md:space-y-3">
+        <button id="launcher-students" class="floating-launcher bg-blue-500 text-white shadow-lg text-emboss font-bold">
+            <span class="launcher-icon text-lg md:text-2xl">🎓</span> 
+            <span class="launcher-text tracking-wider text-xs md:text-sm">STUDENTS</span>
+        </button>
+        <button id="launcher-inkmint" class="floating-launcher bg-gradient-to-t from-pink-500 to-yellow-300 text-white shadow-lg text-emboss font-bold">
+            <span class="launcher-icon text-lg md:text-2xl">🎨</span> 
+            <span class="launcher-text tracking-wider text-xs md:text-sm">INKMINT</span>
+        </button>
+        <button id="launcher-bridge" class="floating-launcher bg-gray-600 text-white shadow-lg text-emboss font-bold">
+            <span class="soon-tag text-[10px] md:text-xs">Soon</span>
+            <span class="launcher-icon text-lg md:text-2xl">🌉</span> 
+            <span class="launcher-text tracking-wider text-xs md:text-sm">BRIDGE</span>
+        </button>
+    </div>
+
+    <!-- Bottom Launcher -->
+    <div class="fixed bottom-0 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3 p-2 bg-black/20 backdrop-blur-sm rounded-t-2xl">
+        <button id="help-button" class="floating-btn bg-indigo-600 text-white rounded-full h-12 px-5 flex items-center justify-center shadow-2xl text-sm font-bold pulsate">
+            Help Me
+        </button>
+        <button id="cart-button" class="floating-btn bg-orange-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-2xl text-3xl relative">
+            🛒
+            <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center border-2 border-white">0</span>
+        </button>
+        <button id="referral-button" class="floating-btn bg-green-500 text-white rounded-full h-12 px-5 flex items-center justify-center shadow-2xl text-sm font-bold pulsate">
+            🎁 Get Discounts
+        </button>
+    </div>
+
+
+    <!-- Modals Container -->
+    <div id="modal-container"></div>
+    
+    <!-- Footer -->
+    <footer class="relative z-10 bg-black bg-opacity-30 text-white p-8 mt-auto text-center md:text-left">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-emboss">Contact Us</h3>
+                <div class="space-y-2">
+                    <p><a href="tel:+917002122703" class="hover:text-orange-400 inline-flex items-center gap-2">📞 <span>+91 7002122703</span></a></p>
+                    <p><a href="mailto:smartsaathi.dbr@gmail.com" class="hover:text-orange-400 inline-flex items-center gap-2">📧 <span>smartsaathi.dbr@gmail.com</span></a></p>
+                    <p><a href="https://wa.me/917002122703" target="_blank" rel="noopener noreferrer" class="hover:text-green-400 inline-flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.31 20.62C8.75 21.39 10.36 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.04 20.13C10.56 20.13 9.11 19.76 7.85 19.05L7.54 18.87L4.32 19.73L5.2 16.6L4.98 16.28C4.21 14.96 3.82 13.47 3.82 11.91C3.82 7.36 7.52 3.67 12.04 3.67C14.27 3.67 16.32 4.54 17.89 6.11C19.46 7.68 20.26 9.73 20.26 11.91C20.26 16.46 16.56 20.13 12.04 20.13ZM16.51 14.23C16.28 14.12 15.03 13.51 14.8 13.42C14.57 13.33 14.41 13.29 14.24 13.52C14.08 13.75 13.59 14.31 13.43 14.47C13.26 14.64 13.1 14.66 12.87 14.54C12.64 14.43 11.91 14.17 11.04 13.39C10.33 12.75 9.85 11.98 9.72 11.75C9.59 11.52 9.71 11.41 9.83 11.29C9.94 11.18 10.08 11 10.21 10.86C10.34 10.71 10.39 10.6 10.47 10.43C10.56 10.26 10.5 10.1 10.44 9.99C10.38 9.88 9.89 8.63 9.68 8.13C9.48 7.64 9.28 7.72 9.15 7.71H8.76C8.59 7.71 8.32 7.77 8.09 8C7.86 8.23 7.38 8.66 7.38 9.61C7.38 10.56 8.12 11.46 8.24 11.62C8.36 11.78 9.9 14.19 12.23 15.11C12.83 15.37 13.3 15.54 13.65 15.66C14.21 15.85 14.69 15.82 15.08 15.75C15.53 15.67 16.51 15.09 16.71 14.86C16.91 14.64 16.91 14.47 16.85 14.36C16.79 14.24 16.74 14.23 16.51 14.23Z"/></svg>
+                        <span>Message on WhatsApp</span>
+                    </a></p>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-emboss">Follow Us</h3>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <!-- Google Icon -->
+                    <a href="https://g.co/kgs/eDGCYjg" target="_blank" rel="noopener noreferrer" class="social-icon w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                        <svg class="w-6 h-6" viewBox="0 0 48 48"><path fill="#4285F4" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path><path fill="#34A853" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571l5.657,5.657C39.321,34.191,44,27.935,44,20C44,22.659,43.862,21.35,43.611,20.083z"></path><path fill="#FBBC05" d="M28.081,46.135L28.081,46.135C29.832,44.522,31.221,42.451,32.074,40l-5.657-5.657C25.054,35.899,24.529,36,24,36c-5.222,0-9.651-3.343-11.303-8H4.388v0.003C6.251,36.372,14.577,44,24,44C25.832,44,27.138,43.635,28.081,46.135z"></path><path fill="#EA4335" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-1.497,0-2.922-0.344-4.244-0.958L14.093,38.32C17.618,41.232,22.44,44,28,44c5.556,0,10.522-2.529,13.865-6.625l-5.657-5.657C35.221,34.013,33.821,36,32.074,38l5.657,5.657C39.321,34.191,44,27.935,44,20C44,22.659,43.862,21.35,43.611,20.083z"></path></svg>
+                    </a>
+                    <!-- Facebook Icon -->
+                    <a href="https://www.facebook.com/profile.php?id=61577854696171" target="_blank" rel="noopener noreferrer" class="social-icon w-10 h-10 rounded-full bg-[#1877F2] flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991,3.657 9.128,8.438,9.878v-6.987h-2.54V12h2.54V9.797c0-2.506,1.492-3.89,3.777-3.89,1.094,0,2.238,.195,2.238,.195v2.46h-1.26c-1.243,0-1.63,.771-1.63,1.562V12h2.773l-.443,2.89h-2.33v6.988C18.343,21.128,22,16.991,22,12z"></path></svg>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-emboss">Legal</h3>
+                <p class="hover:text-orange-400 cursor-pointer">About Us</p>
+                <p class="hover:text-orange-400 cursor-pointer">Privacy Policy</p>
+                <p class="hover:text-orange-400 cursor-pointer">Terms of Service</p>
+            </div>
+        </div>
+        <div class="text-center text-gray-400 mt-8 pt-8 border-t border-gray-700">
+            © 2025 SmartSaathi Hub. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- BACKGROUND CANVAS ANIMATION ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const orbs = [];
+        const orbCount = 40;
+        // Contrasting colors for orbs
+        const orbColors = ['rgba(255,255,255,0.7)', 'rgba(255,215,0,0.7)', 'rgba(173,216,230,0.7)'];
+
+        class Orb {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.radius = Math.random() * 2 + 1; // Smaller orbs
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.color = orbColors[Math.floor(Math.random() * orbColors.length)];
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > width) this.speedX *= -1;
+                if (this.y < 0 || this.y > height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initOrbs() {
+            for (let i = 0; i < orbCount; i++) {
+                orbs.push(new Orb());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            orbs.forEach(orb => {
+                orb.update();
+                orb.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        initOrbs();
+        animate();
+
+
+        // --- APPLICATION STATE & DATA ---
+        let cart = [];
+        const WHATSAPP_NUMBER = '917002122703';
+        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbx3UIZFy86KBzTlT06cBHqdN9gkio8y5xtw5QX95-4PWFNO0G7wgJvu4uMUh9kxggDf/exec';
+        const BRIDGE_GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwruNsjN7UzOqyZNHoS1VK9na-75_2vHUilFsq8scoDnD9W3AJ0YpbjmeTxTY8YEhOi/exec';
+        const servicesData = {
+            students: {
+                title: "SmartSaathi Students: Affordable Student Helpdesk & Print Services",
+                sections: [
+                    {
+                        title: "Academic Documents",
+                        services: [
+                            { id: 's1', name: 'Digital Project Report (PDF)', icon: '📘', price: 149 },
+                            { id: 's2', name: 'Printed Project Report (Eco)', icon: '📕', price: 299 },
+                            { id: 's3', name: 'Digital Assignment / Notes', icon: '📄', price: 99 },
+                            { id: 's4', name: 'Printed Assignment / Notes', icon: '📄', price: 199 },
+                            { id: 's5', name: 'Combo Kit: Project + Notes + CV', icon: '📦', price: 499 },
+                        ]
+                    },
+                    {
+                        title: "Career Documents",
+                        services: [
+                            { id: 's6', name: 'Resume / CV Design (PDF)', icon: '📄', price: 89 },
+                            { id: 's7', name: 'Resume + Color Print', icon: '📄', price: 139 },
+                        ]
+                    },
+                    {
+                        title: "Printing Services",
+                        services: [
+                            { id: 's8', name: 'Color Printouts (Eco Mode)', icon: '🖨️', price: 8, quantity: true, min: 2 },
+                            { id: 's9', name: 'High Quality Color Print', icon: '🖨️', price: 12, quantity: true, min: 1 },
+                            { id: 's10', name: 'B/W Printouts – Single Side', icon: '🖨️', price: 2.5, quantity: true, min: 1 },
+                            { id: 's11', name: 'B/W Printouts – Duplex', icon: '🖨️', price: 1.8, quantity: true, min: 1 },
+                            { id: 's15', name: 'B/W Duplex – Bulk (200+)', icon: '🖨️', price: 1.5, quantity: true, min: 200 },
+                            { id: 's12', name: 'Spiral Binding (Standard)', icon: '🔗', price: 49 },
+                        ]
+                    },
+                    {
+                        title: "Delivery & Add-ons",
+                        services: [
+                            { id: 's13', name: 'Hostel/Home Delivery (Standard)', icon: '🏠', price: 49 },
+                            { id: 's14', name: 'Urgent Express Delivery', icon: '⚡', price: 89 },
+                            { id: 's16', name: 'Urgent Digital Delivery Add-on', icon: '⚡', price: 99 },
+                        ]
+                    }
+                ]
+            },
+            inkmint: {
+                title: "SmartSaathi Inkmint: Minting Creativity, Digitally.",
+                sections: [
+                    {
+                        title: "Digital Product Categories",
+                        services: [
+                            { id: 'i1', name: 'Digital Visiting Card (Standard/Basic)', icon: '📇', basePrice: 149, introPrice: 119 },
+                            { id: 'i2', name: 'Premium Visiting Card Design (3 Options)', icon: '✨', basePrice: 375, introPrice: 299 },
+                            { id: 'i3', name: 'WhatsApp-Clickable Version (Add-on)', icon: '🔗', basePrice: 79, introPrice: 63 },
+                            { id: 'i4', name: 'Premium Poster (≤20 words)', icon: '🖼️', basePrice: 349, introPrice: 279, quantity: true, min: 1, isPoster: true },
+                            { id: 'i5', name: '+10 Words (Text Add-on)', icon: '✍️', basePrice: 50, introPrice: 40, quantity: true, min: 1, isPosterAddon: true },
+                            { id: 'i6', name: 'Logo/Symbol Add-on (min)', icon: '🎨', basePrice: 50, introPrice: 40, isPosterAddon: true },
+                            { id: 'i7', name: 'Logo/Symbol Add-on (max)', icon: '👑', basePrice: 100, introPrice: 80, isPosterAddon: true },
+                            { id: 'i8', name: 'Reels + Poster Combo', icon: '🎬', basePrice: 149, introPrice: 119, isExtra: true },
+                            { id: 'i9', name: 'Language Adaptation (e.g., Assamese)', icon: '🌐', basePrice: 49, introPrice: 39 },
+                            { id: 'i10', name: 'Basic Logo Design (Standalone)', icon: '💡', basePrice: 499, introPrice: 399 },
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // --- DOM Element References ---
+        const modalContainer = document.getElementById('modal-container');
+        const cartButton = document.getElementById('cart-button');
+        const cartCountEl = document.getElementById('cart-count');
+        const helpButton = document.getElementById('help-button');
+        const referralButton = document.getElementById('referral-button');
+
+        
+        // --- Event Delegation for Modals ---
+        modalContainer.addEventListener('click', (e) => {
+            const target = e.target;
+
+            // Close button
+            if (target.closest('.modal-close-btn')) {
+                closeModal();
+            }
+            
+            // Service card logic
+            const card = target.closest('.service-card');
+            if (card) {
+                const serviceId = card.dataset.serviceId;
+                const vertical = card.dataset.vertical;
+                const action = target.dataset.action;
+                toggleServiceSelection(serviceId, vertical, action);
+            }
+
+            // Add to Cart button in service modals
+            if (target.closest('.add-to-cart-btn')) {
+                closeModal();
+            }
+
+            // Clear Cart in Order Summary
+            if (target.closest('#clear-cart-btn')) {
+                cart = [];
+                updateCartUI();
+                closeModal();
+            }
+        });
+
+        // --- Event Listeners for static elements ---
+        document.getElementById('launcher-students').addEventListener('click', () => openServiceModal('students'));
+        document.getElementById('launcher-inkmint').addEventListener('click', () => openServiceModal('inkmint'));
+        document.getElementById('launcher-bridge').addEventListener('click', () => openBridgeModal());
+        cartButton.addEventListener('click', openOrderSummaryModal);
+        helpButton.addEventListener('click', openHelpModal);
+        referralButton.addEventListener('click', openReferralModal);
+
+        
+        // --- GA4 Tracking Helper ---
+        function trackGAEvent(name, params = {}) {
+            gtag('event', name, params);
+        }
+
+        // --- Modal Management ---
+        function openModal(modalHTML) {
+            modalContainer.innerHTML = modalHTML;
+            const modal = modalContainer.querySelector('.modal');
+            const overlay = modalContainer.querySelector('.modal-overlay');
+            
+            setTimeout(() => {
+                modal.classList.remove('opacity-0', 'scale-95');
+                overlay.classList.remove('opacity-0');
+            }, 10);
+            
+            overlay.addEventListener('click', closeModal);
+            document.addEventListener('keydown', handleEscKey);
+        }
+
+        function closeModal() {
+            const modal = modalContainer.querySelector('.modal');
+            if (modal) {
+                const overlay = modalContainer.querySelector('.modal-overlay');
+                modal.classList.add('opacity-0', 'scale-95');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => {
+                    modalContainer.innerHTML = '';
+                    document.removeEventListener('keydown', handleEscKey);
+                }, 300);
+            }
+        }
+        
+        function handleEscKey(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        }
+        
+        // --- Gemini Help Modal ---
+        function openHelpModal() {
+            const modalHTML = `
+                <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div class="modal-overlay fixed inset-0 transition-opacity duration-300 opacity-0"></div>
+                    <div id="help-modal" class="modal modal-content w-full max-w-lg h-[70vh] rounded-2xl p-6 text-white relative transform transition-all duration-300 opacity-0 scale-95 flex flex-col">
+                        <div class="flex-shrink-0 flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-bold text-emboss flex items-center gap-2">🤖 AI Assistant</h2>
+                            <button class="modal-close-btn text-3xl font-bold hover:text-orange-400">&times;</button>
+                        </div>
+                        <div id="chat-window" class="flex-grow bg-black/20 rounded-lg p-4 overflow-y-auto space-y-4">
+                            <!-- Chat messages will be appended here -->
+                            <div class="flex justify-start">
+                                <div class="chat-bubble-gemini rounded-lg p-3 max-w-xs lg:max-w-md">
+                                    Hello! How can I help you today? Feel free to ask about our services or our new referral program!
+                                </div>
+                            </div>
+                        </div>
+                        <div id="typing-indicator" class="h-8 flex-shrink-0 flex items-center p-2 hidden">
+                            <div class="chat-bubble-gemini rounded-lg p-3 flex items-center space-x-1">
+                                <span class="w-2 h-2 bg-white rounded-full"></span>
+                                <span class="w-2 h-2 bg-white rounded-full"></span>
+                                <span class="w-2 h-2 bg-white rounded-full"></span>
+                            </div>
+                        </div>
+                        <form id="help-form" class="flex-shrink-0 mt-4 flex gap-2">
+                            <input type="text" name="prompt" placeholder="Ask about our services..." class="w-full p-3 rounded-lg form-input" required autocomplete="off">
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-5 rounded-lg shadow-lg transition-transform hover:scale-105">Ask</button>
+                        </form>
+                    </div>
+                </div>
+            `;
+            openModal(modalHTML);
+            modalContainer.querySelector('#help-form').addEventListener('submit', handleHelpSubmission);
+        }
+
+        async function handleHelpSubmission(e) {
+            e.preventDefault();
+            const form = e.target;
+            const input = form.querySelector('input[name="prompt"]');
+            const prompt = input.value.trim();
+            if (!prompt) return;
+
+            const chatWindow = document.getElementById('chat-window');
+            const typingIndicator = document.getElementById('typing-indicator');
+
+            // Display user's message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'flex justify-end';
+            userMessage.innerHTML = `<div class="chat-bubble-user rounded-lg p-3 max-w-xs lg:max-w-md">${prompt}</div>`;
+            chatWindow.appendChild(userMessage);
+            
+            input.value = '';
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            typingIndicator.classList.remove('hidden');
+
+            try {
+                const responseText = await askGemini(prompt);
+                const geminiMessage = document.createElement('div');
+                geminiMessage.className = 'flex justify-start';
+                geminiMessage.innerHTML = `<div class="chat-bubble-gemini rounded-lg p-3 max-w-xs lg:max-w-md">${responseText}</div>`;
+                chatWindow.appendChild(geminiMessage);
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'flex justify-start';
+                errorMessage.innerHTML = `<div class="chat-bubble-gemini rounded-lg p-3 max-w-xs lg:max-w-md bg-red-500">Sorry, I'm having trouble connecting. Please try again later.</div>`;
+                chatWindow.appendChild(errorMessage);
+            } finally {
+                typingIndicator.classList.add('hidden');
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+        }
+        
+        async function askGemini(userPrompt, contextPrompt) {
+            const baseContext = `
+                You are SmartSaathi Hub's friendly AI assistant. Your goal is to answer user questions about our services based ONLY on the information provided below. 
+                **CRITICAL RULE: Do NOT mention, guess, or calculate any prices, rates, MRPs, discounts, or any numbers related to cost.** If asked about price, politely state that you cannot provide pricing information and suggest they add items to the cart and proceed to WhatsApp for a final quote.
+                If the user asks about discounts, you MUST mention the referral program.
+                Do not make up services or details. If you don't know the answer, politely say that you can't find the information and suggest they contact us directly on WhatsApp.
+
+                Here is the information about our services:
+
+                **SmartSaathi Students (Affordable Student Helpdesk & Print Services):**
+                - We offer digital and printed project reports, assignments, and notes.
+                - We design resumes/CVs and provide printed copies on bond paper.
+                - We have printing services for color (eco and high quality) and black & white documents (single-sided and duplex), plus spiral binding.
+                - We offer standard and urgent delivery services for local customers in Dibrugarh.
+                - We also have an urgent digital delivery add-on for PDF-only services.
+
+                **SmartSaathi Inkmint (Premium Digital Design):**
+                - We design digital and premium visiting cards (with 3 options for premium).
+                - We create high-quality premium posters for events and marketing.
+                - We offer add-ons like making cards WhatsApp-clickable, adding extra text to posters, and including logos.
+                - We provide standalone logo design services.
+                - We can adapt designs for different languages, like Assamese.
+
+                **Referral Program:**
+                - Customers can get 10% off their next order OR claim it as cashback for a successful referral.
+                - One referral equals one reward.
+                - To get started, they should message us on WhatsApp after their first order.
+            `;
+            
+            const fullPrompt = contextPrompt ? `${contextPrompt}\n\nUser Input: "${userPrompt}"` : `${baseContext}\n\nUser Question: "${userPrompt}"\n\nAnswer:`;
+            
+            const payload = {
+                contents: [{ role: "user", parts: [{ text: fullPrompt }] }]
+            };
+            const apiKey = ""; // Provided by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`API request failed with status ${response.status}`);
+            }
+
+            const result = await response.json();
+            
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                return result.candidates[0].content.parts[0].text;
+            } else {
+                return "I'm sorry, I couldn't process that. Could you try rephrasing?";
+            }
+        }
+
+
+        // --- Service Modals ---
+        function openServiceModal(vertical) {
+            const data = servicesData[vertical];
+            trackGAEvent('launcher_click', { 'event_category': 'Navigation', 'event_action': 'Click', 'event_label': `SmartSaathi ${vertical}` });
+
+            let serviceCardsHTML = '';
+            data.sections.forEach(section => {
+                serviceCardsHTML += `<h3 class="text-xl font-bold text-orange-400 mt-6 mb-4 text-emboss">${section.title}</h3>`;
+                serviceCardsHTML += `<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">`;
+                section.services.forEach(service => {
+                    const cartItem = cart.find(item => item.id === service.id);
+                    const isSelected = !!cartItem;
+                    
+                    serviceCardsHTML += `
+                        <div id="card-${service.id}" 
+                             class="service-card ${isSelected ? 'selected' : ''} rounded-lg p-4 flex flex-col items-center justify-center text-center cursor-pointer aspect-square" 
+                             data-service-id="${service.id}" 
+                             data-vertical="${vertical}">
+                            ${getCardContent(service, cartItem)}
+                        </div>
+                    `;
+                });
+                serviceCardsHTML += `</div>`;
+            });
+            
+            const modalHTML = `
+                <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div class="modal-overlay fixed inset-0 transition-opacity duration-300 opacity-0"></div>
+                    <div class="modal modal-content w-full max-w-4xl max-h-[90vh] rounded-2xl p-6 md:p-8 text-white relative transform transition-all duration-300 opacity-0 scale-95 overflow-y-auto">
+                        <button class="modal-close-btn absolute top-4 right-4 text-3xl font-bold hover:text-orange-400">&times;</button>
+                        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-emboss">${data.title}</h2>
+                        ${serviceCardsHTML}
+                        <div class="mt-8 pt-6 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4">
+                            <button class="w-full md:w-auto add-to-cart-btn bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-transform hover:scale-105">
+                                Done
+                            </button>
+                            <div class="text-center">
+                                <p class="font-semibold">Need Help?</p>
+                                <a href="https://wa.me/${WHATSAPP_NUMBER}?text=Hello! I have a question." target="_blank" class="text-green-400 hover:underline">Chat with us on WhatsApp</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            openModal(modalHTML);
+        }
+        
+        function getCardContent(service, cartItem) {
+            const isSelected = !!cartItem;
+
+            if (isSelected && service.quantity) {
+                return `
+                    <p class="text-sm font-semibold mb-2">${service.name}</p>
+                    <div class="flex items-center justify-center gap-3 bg-white/10 rounded-full p-1">
+                        <button data-action="decrease" class="w-8 h-8 rounded-full bg-red-500 text-white font-bold text-xl flex items-center justify-center">-</button>
+                        <span class="font-bold text-lg">${cartItem.quantity}</span>
+                        <button data-action="increase" class="w-8 h-8 rounded-full bg-green-500 text-white font-bold text-xl flex items-center justify-center">+</button>
+                    </div>
+                `;
+            }
+
+            let content = `
+                <span class="text-4xl mb-2">${service.icon}</span>
+                <p class="text-sm font-semibold">${service.name}</p>
+            `;
+            if (isSelected) {
+                content += `<div class="absolute top-2 right-2 text-orange-400 text-2xl">✓</div>`;
+            }
+            return content;
+        }
+
+        function updateCardUI(serviceId, vertical) {
+            const cardElement = document.getElementById(`card-${serviceId}`);
+            if (!cardElement) return;
+
+            const serviceData = servicesData[vertical].sections.flatMap(s => s.services).find(s => s.id === serviceId);
+            const cartItem = cart.find(item => item.id === serviceId);
+            
+            cardElement.innerHTML = getCardContent(serviceData, cartItem);
+            
+            if (cartItem) {
+                cardElement.classList.add('selected');
+            } else {
+                cardElement.classList.remove('selected');
+            }
+        }
+
+
+        function toggleServiceSelection(serviceId, vertical, action) {
+            const serviceData = servicesData[vertical].sections.flatMap(s => s.services).find(s => s.id === serviceId);
+            const cartItemIndex = cart.findIndex(item => item.id === serviceId);
+
+            if (action === 'increase') {
+                if(cartItemIndex > -1) cart[cartItemIndex].quantity++;
+            } else if (action === 'decrease') {
+                if(cartItemIndex > -1) {
+                    cart[cartItemIndex].quantity--;
+                    if (cart[cartItemIndex].quantity < (serviceData.min || 1)) {
+                        cart.splice(cartItemIndex, 1);
+                    }
+                }
+            } else {
+                // Click on the card itself
+                if (cartItemIndex > -1) {
+                    if (!serviceData.quantity) {
+                        cart.splice(cartItemIndex, 1); // Remove non-quantity item
+                    }
+                } else {
+                    const quantity = serviceData.min || 1;
+                    cart.push({ ...serviceData, quantity, vertical });
+                    trackGAEvent('service_selected', { 'event_category': 'Service Selection', 'event_action': 'Add to Cart', 'event_label': serviceData.name });
+                }
+            }
+            
+            updateCartUI();
+            updateCardUI(serviceId, vertical);
+        }
+
+        function openBridgeModal() {
+            trackGAEvent('launcher_click', { 'event_category': 'Navigation', 'event_action': 'Click', 'event_label': 'SmartSaathi Bridge' });
+            const modalHTML = `
+                <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div class="modal-overlay fixed inset-0 transition-opacity duration-300 opacity-0"></div>
+                    <div class="modal modal-content w-full max-w-2xl rounded-2xl p-8 text-white relative transform transition-all duration-300 opacity-0 scale-95">
+                        <button class="modal-close-btn absolute top-4 right-4 text-3xl font-bold hover:text-orange-400">&times;</button>
+                        <h2 class="text-3xl font-bold mb-4 text-emboss">🌉 SmartSaathi Bridge</h2>
+                        <p class="text-lg text-gray-300 mb-6">Launching soon: Essential document services for new & existing entrepreneurs — including Loan Files, Form Fillups, MSME Templates, and Financial Reports. Stay tuned for expert support.</p>
+                        <form id="bridge-form">
+                            <h3 class="text-xl font-semibold mb-4 text-orange-400">Notify Me When Live!</h3>
+                            <div class="space-y-4">
+                                <input type="text" name="name" placeholder="Your Name" class="w-full p-3 rounded-lg form-input" required>
+                                <input type="tel" name="phone" placeholder="Your WhatsApp Number" class="w-full p-3 rounded-lg form-input" required>
+                                <input type="email" name="email" placeholder="Your Email Address" class="w-full p-3 rounded-lg form-input" required>
+                                <textarea name="query" rows="3" placeholder="Any specific service you're interested in? (optional)" class="w-full p-3 rounded-lg form-input"></textarea>
+                            </div>
+                            <button type="submit" class="w-full mt-6 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-transform hover:scale-105">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            `;
+            openModal(modalHTML);
+            modalContainer.querySelector('#bridge-form').addEventListener('submit', handleBridgeSubmission);
+        }
+
+        // --- Cart & Order Logic ---
+        
+        function updateCartUI() {
+            const totalItems = cart.length;
+            cartCountEl.textContent = totalItems;
+        }
+        
+        function calculateTotalPrice() {
+            let studentsTotal = 0;
+            let inkmintBaseTotal = 0;
+            let posterQuantity = 0;
+
+            cart.forEach(item => {
+                if (item.vertical === 'students') {
+                    studentsTotal += item.price * item.quantity;
+                } else if (item.vertical === 'inkmint') {
+                    const price = item.introPrice; // Use intro price by default
+                    inkmintBaseTotal += price * item.quantity;
+                    if(item.isPoster) {
+                        posterQuantity += item.quantity;
+                    }
+                }
+            });
+
+            // Inkmint Bulk Discount Logic for Posters
+            let bulkDiscountPercentage = 0;
+            if (posterQuantity >= 20) bulkDiscountPercentage = 0.15;
+            else if (posterQuantity >= 10) bulkDiscountPercentage = 0.10;
+            else if (posterQuantity >= 5) bulkDiscountPercentage = 0.05;
+
+            let inkmintPosterBasePriceTotal = 0;
+            cart.forEach(item => {
+                if(item.isPoster || item.isPosterAddon) {
+                    inkmintPosterBasePriceTotal += item.basePrice * item.quantity;
+                }
+            });
+            
+            const bulkDiscountAmount = inkmintPosterBasePriceTotal * bulkDiscountPercentage;
+            const finalInkmintTotal = inkmintBaseTotal - bulkDiscountAmount;
+            
+            return studentsTotal + finalInkmintTotal;
+        }
+
+        function openOrderSummaryModal() {
+            if (cart.length === 0) {
+                // Let's use a custom message box instead of alert
+                openModal(`<div class="fixed inset-0 z-50 flex items-center justify-center p-4"><div class="modal-overlay fixed inset-0"></div><div class="modal modal-content w-full max-w-sm rounded-2xl p-6 text-white relative"><p class="text-center mb-4">Your cart is empty. Please add some services first!</p><button class="modal-close-btn w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg">OK</button></div></div>`);
+                return;
+            }
+            trackGAEvent('cart_viewed', { 'event_category': 'Cart Action', 'event_action': 'View Summary' });
+            
+            let summaryHTML = '<p class="text-gray-300 mb-4">Review your selections before proceeding.</p>';
+            cart.forEach(item => {
+                summaryHTML += `
+                    <div class="flex justify-between items-center py-2 border-b border-gray-700">
+                        <span>${item.name} <span class="text-gray-400">x${item.quantity}</span></span>
+                        <span class="font-semibold">${item.vertical === 'students' ? '🎓' : '🎨'}</span>
+                    </div>
+                `;
+            });
+
+            const hasStudentService = cart.some(item => item.vertical === 'students');
+            const hasPosterService = cart.some(item => item.isPoster);
+
+            const studentDetailsField = `
+                <div id="student-details-field" class="${hasStudentService ? '' : 'hidden'}">
+                    <label for="details" class="block text-sm font-medium text-gray-300 mb-1">Topic/Details of Project/Assignment</label>
+                    <div class="flex items-center gap-2">
+                        <textarea id="details" name="details" rows="3" placeholder="Just give us the topic, we will do the rest." class="w-full p-3 rounded-lg form-input"></textarea>
+                        <button type="button" id="suggest-structure-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold p-3 rounded-lg shadow-lg h-full" title="Fill in your details and topic first!">✨</button>
+                    </div>
+                    <div id="structure-suggestion" class="mt-2 p-3 rounded-lg gemini-suggestion-box hidden"></div>
+                </div>
+            `;
+
+            const posterDetailsField = `
+                <div id="poster-details-field" class="${hasPosterService ? '' : 'hidden'} mt-4">
+                    <label for="poster-details" class="block text-sm font-medium text-gray-300 mb-1">Theme/Event for Poster</label>
+                     <div class="flex items-center gap-2">
+                        <textarea id="poster-details" name="poster-details" rows="3" placeholder="e.g., 'A college music festival'" class="w-full p-3 rounded-lg form-input"></textarea>
+                        <button type="button" id="get-ideas-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold p-3 rounded-lg shadow-lg h-full" title="Fill in your details and theme first!">✨</button>
+                    </div>
+                    <div id="ideas-suggestion" class="mt-2 p-3 rounded-lg gemini-suggestion-box hidden"></div>
+                </div>
+            `;
+            
+            const modalHTML = `
+                <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div class="modal-overlay fixed inset-0 transition-opacity duration-300 opacity-0"></div>
+                    <div class="modal modal-content w-full max-w-2xl max-h-[90vh] rounded-2xl p-8 text-white relative transform transition-all duration-300 opacity-0 scale-95 overflow-y-auto">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-3xl font-bold text-emboss">Order Summary</h2>
+                            <button id="clear-cart-btn" class="text-sm bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-transform hover:scale-105">Clear Cart</button>
+                        </div>
+                        <div class="mb-6">${summaryHTML}</div>
+                        
+                        <form id="order-form">
+                            <h3 class="text-xl font-semibold mb-4 text-orange-400">Your Details (Required for AI Features)</h3>
+                            <div class="space-y-4">
+                                <input type="text" id="order-name" name="name" placeholder="Your Name" class="w-full p-3 rounded-lg form-input" required>
+                                <input type="tel" id="order-phone" name="phone" placeholder="Your WhatsApp Number" class="w-full p-3 rounded-lg form-input" required>
+                                <input type="email" id="order-email" name="email" placeholder="Your Email Address" class="w-full p-3 rounded-lg form-input" required>
+                                ${studentDetailsField}
+                                ${posterDetailsField}
+                            </div>
+                            <div class="mt-8 flex flex-col items-center gap-2">
+                                <div class="flex items-center gap-4">
+                                    <button type="submit" class="w-full md:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-transform hover:scale-105 flex items-center justify-center gap-2">
+                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.31 20.62C8.75 21.39 10.36 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.04 20.13C10.56 20.13 9.11 19.76 7.85 19.05L7.54 18.87L4.32 19.73L5.2 16.6L4.98 16.28C4.21 14.96 3.82 13.47 3.82 11.91C3.82 7.36 7.52 3.67 12.04 3.67C14.27 3.67 16.32 4.54 17.89 6.11C19.46 7.68 20.26 9.73 20.26 11.91C20.26 16.46 16.56 20.13 12.04 20.13ZM16.51 14.23C16.28 14.12 15.03 13.51 14.8 13.42C14.57 13.33 14.41 13.29 14.24 13.52C14.08 13.75 13.59 14.31 13.43 14.47C13.26 14.64 13.1 14.66 12.87 14.54C12.64 14.43 11.91 14.17 11.04 13.39C10.33 12.75 9.85 11.98 9.72 11.75C9.59 11.52 9.71 11.41 9.83 11.29C9.94 11.18 10.08 11 10.21 10.86C10.34 10.71 10.39 10.6 10.47 10.43C10.56 10.26 10.5 10.1 10.44 9.99C10.38 9.88 9.89 8.63 9.68 8.13C9.48 7.64 9.28 7.72 9.15 7.71H8.76C8.59 7.71 8.32 7.77 8.09 8C7.86 8.23 7.38 8.66 7.38 9.61C7.38 10.56 8.12 11.46 8.24 11.62C8.36 11.78 9.9 14.19 12.23 15.11C12.83 15.37 13.3 15.54 13.65 15.66C14.21 15.85 14.69 15.82 15.08 15.75C15.53 15.67 16.51 15.09 16.71 14.86C16.91 14.64 16.91 14.47 16.85 14.36C16.79 14.24 16.74 14.23 16.51 14.23Z"/></svg>
+                                        <span class="submit-text">Confirm Order on WhatsApp</span>
+                                        <svg class="animate-spin h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                    </button>
+                                    <img src="https://github.com/PradyutKonwar/smartsaathi/blob/main/WP_QR.jpg?raw=true" alt="WhatsApp QR Code" class="h-24 w-24 rounded-lg hidden md:block">
+                                </div>
+                                <p class="text-xs text-gray-400 mt-2">A team member will confirm your details instantly.</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            `;
+            openModal(modalHTML);
+            
+            modalContainer.querySelector('#order-form').addEventListener('submit', handleOrderSubmission);
+            
+            if(hasStudentService) {
+                modalContainer.querySelector('#suggest-structure-btn').addEventListener('click', handleSuggestStructure);
+            }
+            if(hasPosterService) {
+                modalContainer.querySelector('#get-ideas-btn').addEventListener('click', handleGetCreativeIdeas);
+            }
+        }
+        
+        async function sendDataToGoogleSheet(sheetData, url) {
+             try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(sheetData)
+                });
+                return true;
+            } catch (error) {
+                console.error("Google Sheet submission failed:", error);
+                return false;
+            }
+        }
+
+        async function handleSuggestStructure() {
+            const name = document.getElementById('order-name').value.trim();
+            const phone = document.getElementById('order-phone').value.trim();
+            const email = document.getElementById('order-email').value.trim();
+            const topic = document.getElementById('details').value.trim();
+            const suggestionBox = document.getElementById('structure-suggestion');
+            
+            if (!name || !phone || !email || !topic) {
+                alert("Please fill in your Name, Phone, Email, and Topic before getting suggestions.");
+                return;
+            }
+            suggestionBox.classList.remove('hidden');
+            suggestionBox.innerHTML = '✨ Capturing details & generating structure...';
+            
+            const leadData = {
+                timestamp: new Date().toISOString(), name, phone, email,
+                details: `[AI Lead] Topic: ${topic}`,
+                services: 'AI Structure Suggestion', total: '0.00',
+            };
+            await sendDataToGoogleSheet(leadData, GOOGLE_SHEET_URL);
+            trackGAEvent('freemium_lead_captured', { 'event_category': 'Lead Capture', 'event_action': 'AI Suggestion', 'event_label': 'Project Structure' });
+
+            const prompt = `Generate a standard academic report structure for the following topic: "${topic}". Include key sections like Introduction, Literature Review, Methodology, Results, Discussion, and Conclusion. Provide a brief, one-sentence description for each section.`;
+            const suggestion = await askGemini(topic, prompt);
+            suggestionBox.innerHTML = suggestion;
+        }
+
+        async function handleGetCreativeIdeas() {
+            const name = document.getElementById('order-name').value.trim();
+            const phone = document.getElementById('order-phone').value.trim();
+            const email = document.getElementById('order-email').value.trim();
+            const topic = document.getElementById('poster-details').value.trim();
+            const suggestionBox = document.getElementById('ideas-suggestion');
+
+            if (!name || !phone || !email || !topic) {
+                alert("Please fill in your Name, Phone, Email, and Poster Theme before getting ideas.");
+                return;
+            }
+            suggestionBox.classList.remove('hidden');
+            suggestionBox.innerHTML = '✨ Capturing details & brainstorming ideas...';
+
+            const leadData = {
+                timestamp: new Date().toISOString(), name, phone, email,
+                details: `[AI Lead] Theme: ${topic}`,
+                services: 'AI Creative Ideas', total: '0.00',
+            };
+            await sendDataToGoogleSheet(leadData, GOOGLE_SHEET_URL);
+            trackGAEvent('freemium_lead_captured', { 'event_category': 'Lead Capture', 'event_action': 'AI Suggestion', 'event_label': 'Poster Ideas' });
+
+            const prompt = `Brainstorm 3 distinct creative concepts for a promotional poster about "${topic}". For each concept, suggest a catchy tagline and some visual elements. Format the output clearly with headings for each concept.`;
+            const suggestion = await askGemini(topic, prompt);
+            suggestionBox.innerHTML = suggestion;
+        }
+
+
+        async function handleOrderSubmission(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const submitText = submitButton.querySelector('.submit-text');
+            const spinner = submitButton.querySelector('svg.animate-spin');
+
+            submitText.textContent = 'Submitting...';
+            spinner.classList.remove('hidden');
+            submitButton.disabled = true;
+
+            const formData = new FormData(form);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const email = formData.get('email');
+            const details = formData.get('details') || 'N/A';
+            
+            const servicesList = cart.map(item => `${item.name} (x${item.quantity})`).join(', ');
+            const totalPrice = calculateTotalPrice();
+
+            const sheetData = {
+                timestamp: new Date().toISOString(),
+                name, phone, details,
+                services: servicesList,
+                total: totalPrice.toFixed(2),
+            };
+
+            await sendDataToGoogleSheet(sheetData, GOOGLE_SHEET_URL);
+            trackGAEvent('order_form_submitted', {
+                'event_category': 'Lead Capture',
+                'event_action': 'Form Submitted',
+                'user_name': name,
+                'user_phone': phone,
+                'user_email': email,
+                'selected_services': servicesList
+            });
+            
+            let whatsappMessage = `Hello, I would like to place an order.\n\n*My Details:*\nName: ${name}\nContact: ${phone}\nEmail: ${email}\n\n`;
+            if (details !== 'N/A') {
+                whatsappMessage += `*Project/Assignment Details:*\n${details}\n\n`;
+            }
+            whatsappMessage += `*Selected Services:*\n- ${cart.map(item => `${item.name} (x${item.quantity})`).join('\n- ')}\n\n`;
+            whatsappMessage += `*Total Amount: ₹${totalPrice.toFixed(2)}*\n\nPlease confirm my order.`;
+
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            trackGAEvent('whatsapp_order_initiated', { 'event_category': 'Order', 'event_action': 'WhatsApp Redirect' });
+
+            window.open(whatsappUrl, '_blank');
+            
+            setTimeout(() => {
+                closeModal();
+                cart = [];
+                updateCartUI();
+            }, 1000);
+        }
+
+        async function handleBridgeSubmission(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            const formData = new FormData(form);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const email = formData.get('email');
+            const query = formData.get('query') || 'N/A';
+
+            const sheetData = { name, phone, email, query };
+
+            await sendDataToGoogleSheet(sheetData, BRIDGE_GOOGLE_SHEET_URL);
+            trackGAEvent('bridge_notify_me_submitted', {
+                'event_category': 'Lead Capture',
+                'event_action': 'Notify Me Submitted',
+                'user_name': name,
+                'user_phone': phone,
+                'user_email': email
+            });
+            submitButton.textContent = 'Submitted! Thank You!';
+            setTimeout(closeModal, 2000);
+        }
+        
+        function openReferralModal() {
+            const modalHTML = `
+                <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div class="modal-overlay fixed inset-0 transition-opacity duration-300 opacity-0"></div>
+                    <div class="modal modal-content w-full max-w-md rounded-2xl p-8 text-white relative transform transition-all duration-300 opacity-0 scale-95">
+                        <button class="modal-close-btn absolute top-4 right-4 text-3xl font-bold hover:text-orange-400">&times;</button>
+                        <h2 class="text-3xl font-bold text-green-400 mb-4 text-emboss">🎁 Want More Discounts?</h2>
+                        <p class="text-gray-200 leading-relaxed mb-6">
+                            Join our referral program! For every friend you refer who places an order, you get **10% off** your next order, or you can claim it as cashback.
+                        </p>
+                        <form id="referral-form">
+                            <h3 class="text-xl font-semibold mb-4 text-orange-400">Sign Up to Get Started!</h3>
+                            <div class="space-y-4">
+                                <input type="text" name="name" placeholder="Your Name" class="w-full p-3 rounded-lg form-input" required>
+                                <input type="tel" name="phone" placeholder="Your Mobile Number" class="w-full p-3 rounded-lg form-input" required>
+                                <input type="email" name="email" placeholder="Your Email Address" class="w-full p-3 rounded-lg form-input" required>
+                            </div>
+                            <button type="submit" class="w-full mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-transform hover:scale-105">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            `;
+            openModal(modalHTML);
+            modalContainer.querySelector('#referral-form').addEventListener('submit', handleReferralSubmission);
+        }
+
+        async function handleReferralSubmission(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            const formData = new FormData(form);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const email = formData.get('email');
+
+            const sheetData = {
+                name,
+                phone,
+                email,
+                details: 'Referral Program Signup',
+                services: 'N/A',
+                total: 'N/A'
+            };
+
+            await sendDataToGoogleSheet(sheetData, GOOGLE_SHEET_URL);
+            trackGAEvent('referral_signup', {
+                'event_category': 'Lead Capture',
+                'event_action': 'Referral Signup'
+            });
+            submitButton.textContent = 'Submitted! Thank You!';
+            setTimeout(closeModal, 2000);
+        }
+
+        // Initial UI update on load
+        updateCartUI();
+    });
+    </script>
+</body>
+</html>
